@@ -156,11 +156,11 @@ body{
         <div class="box-2">
             <div class="login-form-container">
                 <h1>Login</h1>
-                <input type="text" placeholder="Username" class="input-field">
+                <input required type="text" id = "username" placeholder="Username" class="input-field">
                 <br><br>
-                <input type="password" placeholder="Password" class="input-field">
+                <input required type="password" id = "password" placeholder="Password" class="input-field">
                 <br><br>
-                <button class="login-button" type="button">Login</button>
+                <button class="login-button" type="button" id = "login_button" onclick="login()">Login</button>
             </div>
 
 
@@ -182,13 +182,32 @@ body{
 
 function login()
 {
-    document.querySelector(".signup-form-container").style.cssText = "display: none;";
-    document.querySelector(".login-form-container").style.cssText = "display: block;";
-    document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(6, 108, 224),  rgb(14, 48, 122));";
-    document.querySelector(".button-2").style.cssText = "display: none";
-    document.querySelector(".button-1").style.cssText = "display: block";
+    var username =  document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    document.getElementById("login_button").disabled = true;
 
+    var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4){
+                if(this.status == 200) {
+                    alert("User logged in successfully");
+                    window.location.replace("dashboard.html");
+                }
+                else{
+                    alert("Invalid credentials!");
+                    document.getElementById("login_button").disabled = false;
+                }
+            }
+        };
+
+        var query = "username=" + username;
+        query = query + "&password=" + password;
+        xhttp.open("GET", "http://localhost:8080/REST_example/api/users/authToken?"+query, true);
+        xhttp.send();
 }
+
+
+
         </script>
     </body>
 </html>
