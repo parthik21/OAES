@@ -4,10 +4,13 @@ import com.example.org.bean.Users;
 import com.example.org.dao.UsersDao;
 import com.example.org.util.TokenUtil;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AuthenticationService {
         private final UsersDao dao = new UsersDao();
         private static final TokenUtil tokenUtil = new TokenUtil();
+        private static final Logger logger = Logger.getLogger(AuthenticationService.class.toString());
 
         static {
                 try {
@@ -18,10 +21,13 @@ public class AuthenticationService {
         }
 
         public Users authenticate(String username, String password) throws Exception {
+                logger.log(Level.INFO, "authentication service called for user " + username);
                 List<Users> users = dao.getUserByCredentials(username, password);
                 if (users.size() == 0) {
+                        logger.log(Level.SEVERE, "authentication failed");
                         throw new Exception("User with these credentials is not found in database");
                 }
+                logger.log(Level.FINEST, "authentication successful");
                 return users.get(0);
         }
 

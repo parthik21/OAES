@@ -147,7 +147,9 @@ body{
         <div class="box-1">
             <div class="content-holder">
                 <h2>OAES</h2>
-                <button class="button-2" onclick="login()">Login</button>
+
+                <img src="mag.gif" id = "load" alt="searching"  width="50"/>
+
             </div>
         </div>
 
@@ -180,15 +182,17 @@ body{
         <script>
 
 
-function login()
-{
-    var username =  document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    document.getElementById("login_button").disabled = true;
+document.getElementById("load").hidden = true;
+    function login()
+    {
+        document.getElementById("load").hidden = false;
+        var username =  document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        document.getElementById("login_button").disabled = true;
 
-    var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange=function() {
-            if (this.readyState == 4){
+        var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange=function() {
+                if (this.readyState == 4){
                 if(this.status == 200) {
                     alert("User logged in successfully");
                     window.location.replace("dashboard.html");
@@ -196,6 +200,7 @@ function login()
                 else{
                     alert("Invalid credentials!");
                     document.getElementById("login_button").disabled = false;
+                    document.getElementById("load").hidden = true;
                 }
             }
         };
@@ -204,7 +209,7 @@ function login()
         query = query + "&password=" + password;
         xhttp.open("GET", "http://localhost:8080/REST_example/api/users/authToken?"+query, true);
         xhttp.send();
-}
+    }
 
 
 
