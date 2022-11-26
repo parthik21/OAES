@@ -270,6 +270,16 @@
     }
     var token = fetchToken();
 
+    var role = token.split("ROLE")[1];
+    var url = window.location.href;
+    var url_list = url.split("/");
+    url_list[url_list.length - 1] = "Login.html";
+    url = url_list.join("/");
+
+    if(role != "authority") {
+        window.location.replace(url);
+    }
+
     function addStudent() {
 
         var xhttp = new XMLHttpRequest();

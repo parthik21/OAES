@@ -7,6 +7,7 @@ import java.net.URLDecoder;
 public class authUtil {
     private AuthenticationService service = new AuthenticationService();
     public boolean authenticate(String token) {
+        token = token.split("ROLE")[0];
         token = URLDecoder.decode(token);
         try {
             service.authenticate(token);

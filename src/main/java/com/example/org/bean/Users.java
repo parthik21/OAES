@@ -1,7 +1,6 @@
 package com.example.org.bean;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Table
 @Entity
@@ -43,19 +42,18 @@ public class Users {
     @Column
     private String role;
 
+    private Users(int user_id, String username, String password, String role) {
+        this.user_id = user_id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
-        this.role = role;
-    }
-
-    private Users(int user_id, String username, String password, String role) {
-        this.user_id = user_id;
-        this.username = username;
-        this.password = password;
         this.role = role;
     }
 

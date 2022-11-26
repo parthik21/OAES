@@ -12,17 +12,17 @@ public class AuthenticationService {
         static {
                 try {
                         tokenUtil.init();
-                }catch (Exception e) {
+                } catch (Exception e) {
                         e.printStackTrace();
                 }
         }
 
-        public boolean authenticate(String username, String password) throws Exception {
+        public Users authenticate(String username, String password) throws Exception {
                 List<Users> users = dao.getUserByCredentials(username, password);
                 if (users.size() == 0) {
                         throw new Exception("User with these credentials is not found in database");
                 }
-                return true;
+                return users.get(0);
         }
 
         public String issueToken(String username, String password) throws Exception {
@@ -31,13 +31,14 @@ public class AuthenticationService {
                 return tokenUtil.encrypt(user.getUser_id() + "");
         }
 
-        public boolean signUp(String username, String password) {
+        public boolean signUp(String username, String password, String role) {
                 Users users = Users.factory();
                 if((username.length() <= 8) || (password.length() < 8)) {
                         return false;
                 }
                 users.setUsername(username);
                 users.setPassword(password);
+                users.setRole(role);
                 return dao.addUser(users);
         }
 

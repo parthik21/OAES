@@ -1,5 +1,6 @@
 package com.example.org.controller;
 
+import com.example.org.bean.Users;
 import com.example.org.service.AuthenticationService;
 
 import javax.ws.rs.*;
@@ -18,10 +19,10 @@ public class AuthenticationController {
     public Response authenticateUser(@QueryParam("username") String username,
                                      @QueryParam("password") String password) {
         try {
-            if(!service.authenticate(username, password)) {
-                throw new Exception("auth failed");
-            }
+            Users users = service.authenticate(username, password);
+
             String token = service.issueToken(username, password);
+            token += "ROLE" + users.getRole();
             NewCookie cookie = new NewCookie("token", token, "/", "","",
                     -1,false);
             return Response.ok(token).cookie(cookie).build();
@@ -37,6 +38,7 @@ public class AuthenticationController {
     public Response authenticateToken(@CookieParam("token") String token) {
         try {
             System.out.println(token);
+            token = token.split("ROLE")[0];
             if(!service.authenticate(token)) {
                 throw new Exception("Exception");
             }
@@ -52,6 +54,7 @@ public class AuthenticationController {
     public Response logout(@CookieParam("token") String token) {
         try {
             System.out.println(token);
+            token = token.split("ROLE")[0];
             NewCookie cookie = new NewCookie("token", "Invalid");
             return Response.ok(token).cookie(cookie).build();
         } catch (Exception e) {
@@ -64,9 +67,10 @@ public class AuthenticationController {
     @Path("/register")
     @Produces(MediaType.TEXT_PLAIN)
     public Response register(@QueryParam("username") String username,
-                             @QueryParam("password") String password) {
+                             @QueryParam("password") String password,
+                             @QueryParam("role") String role) {
         try {
-            if(!service.signUp(username, password)) {
+            if(!service.signUp(username, password, role)) {
                 throw new Exception("Exception");
             }
             return Response.ok("200 OK").build();
