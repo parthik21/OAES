@@ -63,4 +63,10 @@ public class StudentService {
             n = new String("Student could not be deleted!");
         return n;
     }
+
+//    public String myProfile(int id){
+//        Student student = getStudentById(id);
+//
+//        return n;
+//    }
 }
