@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Department Registration</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+        html, body {
+            min-height: 100%;
+        }
+        body, div, form, input, select, textarea, label, p {
+            padding: 0;
+            margin: 0;
+            outline: none;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 14px;
+            color: #666;
+            line-height: 22px;
+        }
+        h1 {
+            position: absolute;
+            margin: 0;
+            font-size: 40px;
+            color: #fff;
+            z-index: 2;
+            line-height: 83px;
+        }
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+        }
+        .testbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+            padding: 20px;
+        }
+        form {
+            width: 100%;
+            padding: 20px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 0 8px  #669999;
+        }
+        .banner {
+            position: relative;
+            height: 300px;
+            background-image: url("https://www.highspot.com/wp-content/uploads/SEO-Blog-.png");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .banner::after {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.2);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        input, select, textarea {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input {
+            width: calc(100% - 10px);
+            padding: 5px;
+        }
+        input[type="date"] {
+            padding: 4px 5px;
+        }
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+        }
+        .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+            color:  #669999;
+        }
+        .item input:hover, .item select:hover, .item textarea:hover {
+            border: 1px solid transparent;
+            box-shadow: 0 0 3px 0  #669999;
+            color: #669999;
+        }
+        .item {
+            position: relative;
+            margin: 10px 0;
+        }
+        .item span {
+            color: red;
+        }
+        .week {
+            display:flex;
+            justfiy-content:space-between;
+        }
+        .colums {
+            display:flex;
+            justify-content:space-between;
+            flex-direction:row;
+            flex-wrap:wrap;
+        }
+        .colums div {
+            width:30%;
+        }
+        input[type="date"]::-webkit-inner-spin-button {
+            display: none;
+        }
+        .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+            position: absolute;
+            font-size: 20px;
+            color:  #a3c2c2;
+        }
+        .item i {
+            right: 1%;
+            top: 30px;
+            z-index: 1;
+        }
+        input[type=radio], input[type=checkbox]  {
+            display: none;
+        }
+        label.radio {
+            position: relative;
+            display: inline-block;
+            margin: 5px 20px 15px 0;
+            cursor: pointer;
+        }
+        .question span {
+            margin-left: 30px;
+        }
+        .question-answer label {
+            display: block;
+        }
+        label.radio:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+        }
+        input[type=radio]:checked + label:before, label.radio:hover:before {
+            border: 2px solid  #669999;
+        }
+        label.radio:after {
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 5px;
+            width: 8px;
+            height: 4px;
+            border: 3px solid  #669999;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+            opacity: 0;
+        }
+        input[type=radio]:checked + label:after {
+            opacity: 1;
+        }
+        .flax {
+            display:flex;
+            justify-content:space-around;
+        }
+        .btn-block {
+            margin-top: 10px;
+            text-align: center;
+        }
+        button {
+            width: 150px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background:  #669999;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background:  #a3c2c2;
+        }
+        @media (min-width: 568px) {
+            .name-item, .city-item {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .name-item input, .name-item div {
+                width: calc(50% - 20px);
+            }
+            .name-item div input {
+                width:97%;}
+            .name-item div label {
+                display:block;
+                padding-bottom:5px;
+            }
+        }
+        tr:nth-child(even) {background-color: #f2f2f2;
+            color:#39adff;}
+        tr:nth-child(odd)  {background-color: #39add1;
+            color: white;
+        }
+        td
+        {
+            text-align: center;
+            padding: 5px;
+        }
+        table
+        {
+            width:100%;
+        }
+
+        .small_button{
+            color : #ffffff;
+            background: #39d182;
+            height : 35px;
+        }
+
+        .small_red_button{
+            color : #ffffff;
+            background: #e15258;
+            height : 35px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="testbox">
+    <form id = "formId">
+        <div class="banner">
+            <h1>Search and modify Employee Details</h1>
+        </div>
+        <br>
+        <div>
+            <table id="top">
+                <tr>
+                    <th>Organisation  ID</th>
+                    <th>Organisation NAME</th>
+                    <th>Organisation Address</th>
+                    <th>Organisation HR</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="colums">
+            <div class="item">
+                <label for="search_by">Choose a :</label>
+                <select name="cars" id="search_by">
+                    <option value="id">Organisation id</option>
+                    <option value="Name">Name</option>
+                    <option value="Address">Address</option>
+                    <option value="HR">Organisation HR</option>
+                </select>
+            </div>
+            <div class="item">
+                <label for="search_text">Search Text<span>*</span></label>
+                <input id="search_text" type="text" name="search_text" required/>
+            </div>
+            <div class="item">
+                <div class="btn-block">
+                    <button id = "searchButton" >Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="colums">
+            <div class="item">
+                <label for="update_text" id = "update_label">Update Text<span>*</span></label>
+                <input id="update_text" type="text" name="update_text"/>
+                <button id = "updateButton">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+
+    var updateCol = "";
+    var update_id = 0;
+    document.getElementById("updateButton").onclick = function (){
+        var value = document.getElementById("update_text").value;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4){
+                if(this.status == 200) {
+                    alert("Organisation updated Successfully!");
+                }
+                else{
+                    alert("Error updating organisation!");
+                }
+            }
+        };
+        xhttp.open("GET", "http://localhost:8080/REST_example_war/api/organisations/update?col=" + updateCol + "&id="+update_id+"&param="+value, true);
+        xhttp.send();
+    }
+
+    var form = document.getElementById("formId");
+    function handleForm(event) { event.preventDefault(); }
+    form.addEventListener('submit', handleForm);
+
+    var top_inner = document.getElementById("top").innerHTML;
+    var organisations;
+    function getOrganisations(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4){
+                if(this.status == 200) {
+                    organisations = JSON.parse(xhttp.responseText);
+                    console.log(organisations);
+                }
+                else{
+                    alert("Unable to search the employees");
+                }
+            }
+        };
+        xhttp.open("GET", "http://localhost:8080/REST_example_war/api/organisations/get", true);
+        xhttp.send();
+    }
+
+    getOrganisations();
+    var dis_data = [];
+    function delete_org(i){
+        if(!confirm("ARE YOU SURE YOU WANT TO DELETE THIS Organisation ?")){
+            return;
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4){
+                if(this.status == 200) {
+                    alert("deleted Organisation, Please Refresh this page");
+                }
+                else{
+                    alert("Unable to search the Organisation");
+                }
+            }
+        };
+        xhttp.open("GET","http://localhost:8080/REST_example_war/api/organisations/delete?id="+dis_data[i]["org_id"],true);
+        xhttp.send();
+    }
+    function update(i){
+        var num = parseInt(prompt("enter the field to change 1 for Name, 2 for Address"));
+        update_id = dis_data[i]["org_id"];
+        switch (num){
+            case 1:
+                updateCol = "name";
+                document.getElementById("update_label").innerHTML = "Name";
+                document.getElementById("update_text").value = dis_data[i]["name"];
+                break;
+            case 2:
+                updateCol = "address";
+                document.getElementById("update_label").innerHTML = "Address";
+                document.getElementById("update_text").value = dis_data[i]["address"];
+                break;
+        }
+    }
+    function load_data(){
+        var inner = top_inner;
+        for(var i = 0;i<dis_data.length;i++){
+            inner = inner + "<tr>";
+            inner = inner + "<td>";
+            inner = inner + dis_data[i]["org_id"];
+            inner = inner + "</td>";
+
+            inner = inner + "<td>";
+            inner = inner + dis_data[i]["name"];
+            inner = inner + "</td>";
+
+            inner = inner + "<td>";
+            inner = inner + dis_data[i]["address"];
+            inner = inner + "</td>";
+
+            inner = inner + "<td>";
+            inner = inner + dis_data[i]["hr"]["first_name"] + " " + dis_data[i]["hr"]["last_name"];
+            inner = inner + "</td>";
+
+            inner = inner + "<td>";
+            inner = inner + "<button class=\"small_button\" onclick=\"update("+i+")\">Update</button>";
+            inner = inner + "</td>";
+
+            inner = inner + "<td>";
+            inner = inner + "<button class=\"small_red_button\" onclick=\"delete_org("+i+")\">Delete</button>";
+            inner = inner + "</td>";
+
+            inner = inner + "</tr>";
+        }
+        document.getElementById("top").innerHTML = inner;
+    }
+    function search_hr(text){
+        dis_data = []
+        for(var i=0;i<organisations.length;i++){
+            if(organisations[i]["hr"]["first_name"].toLowerCase().includes(text.toLowerCase()))
+                dis_data.push(organisations[i]);
+        }
+        console.log(dis_data);
+        load_data();
+    }
+    function search_id(text){
+        dis_data = []
+        for(var i=0;i<organisations.length;i++){
+            if(organisations[i]["org_id"] == parseInt(text))
+                dis_data.push(organisations[i]);
+        }
+        console.log(dis_data);
+        load_data();
+    }
+    function search_name(text){
+        dis_data = []
+        for(var i=0;i<organisations.length;i++){
+            if(organisations[i]["name"].toLowerCase().includes(text.toLowerCase()))
+                dis_data.push(organisations[i]);
+        }
+        console.log(dis_data);
+        load_data();
+    }
+    function search_address(text){
+        dis_data = []
+        for(var i=0;i<organisations.length;i++){
+            if(organisations[i]["address"].toLowerCase().includes(text.toLowerCase()))
+                dis_data.push(organisations[i]);
+        }
+        console.log(dis_data);
+        load_data();
+    }
+    document.getElementById("searchButton").onclick = function (){
+        var option =  document.getElementById("search_by");
+        var search_text = document.getElementById("search_text");
+        console.log(option.value + " " + search_text.value);
+        switch (option.value){
+            case "HR":
+                search_hr(search_text.value);
+                break;
+            case "id":
+                search_id(search_text.value);
+                break;
+            case "Name":
+                search_name(search_text.value);
+                break;
+            case "Address":
+                search_address(search_text.value);
+                break;
+        }
+    };
+
+</script>
+</body>
+</html>

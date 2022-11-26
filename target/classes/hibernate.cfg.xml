@@ -5,7 +5,7 @@
 
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/ESD_DB?createDatabaseIfNotExist=true</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/DEMO_DB_1?createDatabaseIfNotExist=true</property>
         <property name="connection.username">deepak</property>
         <property name="connection.password">password</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
@@ -13,9 +13,12 @@
         <!-- DB schema will be updated if needed -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
-        <mapping class="com.example.org.bean.Employees"/>
-        <mapping class="com.example.org.bean.Departments"/>
-        <mapping class="com.example.org.bean.Organisation"/>
+        <mapping class="com.example.org.bean.Student"/>
+        <mapping class="com.example.org.bean.Exam"/>
+        <mapping class="com.example.org.bean.Test"/>
+        <mapping class="com.example.org.bean.Evaluation"/>
+        <mapping class="com.example.org.bean.Users"/>
+
 
     </session-factory>
 

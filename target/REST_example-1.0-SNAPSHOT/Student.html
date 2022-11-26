@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Student Registration</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+        html, body {
+            min-height: 100%;
+        }
+        body, div, form, input, select, textarea, label, p {
+            padding: 0;
+            margin: 0;
+            outline: none;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 14px;
+            color: #666;
+            line-height: 22px;
+        }
+        h1 {
+            position: absolute;
+            margin: 0;
+            font-size: 40px;
+            color: #fff;
+            z-index: 2;
+            line-height: 83px;
+        }
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+        }
+        .testbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+            padding: 20px;
+        }
+        form {
+            width: 100%;
+            padding: 20px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 0 8px  #669999;
+        }
+        .banner {
+            position: relative;
+            height: 300px;
+            background-image: url("back.jpeg");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .banner::after {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.2);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        input, select, textarea {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input {
+            width: calc(100% - 10px);
+            padding: 5px;
+        }
+        input[type="date"] {
+            padding: 4px 5px;
+        }
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+        }
+        .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+            color:  #669999;
+        }
+        .item input:hover, .item select:hover, .item textarea:hover {
+            border: 1px solid transparent;
+            box-shadow: 0 0 3px 0  #669999;
+            color: #669999;
+        }
+        .item {
+            position: relative;
+            margin: 10px 0;
+        }
+        .item span {
+            color: red;
+        }
+        .week {
+            display:flex;
+            justfiy-content:space-between;
+        }
+        .colums {
+            display:flex;
+            justify-content:space-between;
+            flex-direction:row;
+            flex-wrap:wrap;
+        }
+        .colums div {
+            width:48%;
+        }
+        input[type="date"]::-webkit-inner-spin-button {
+            display: none;
+        }
+        .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+            position: absolute;
+            font-size: 20px;
+            color:  #a3c2c2;
+        }
+        .item i {
+            right: 1%;
+            top: 30px;
+            z-index: 1;
+        }
+        input[type=radio], input[type=checkbox]  {
+            display: none;
+        }
+        label.radio {
+            position: relative;
+            display: inline-block;
+            margin: 5px 20px 15px 0;
+            cursor: pointer;
+        }
+        .question span {
+            margin-left: 30px;
+        }
+        .question-answer label {
+            display: block;
+        }
+        label.radio:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+        }
+        input[type=radio]:checked + label:before, label.radio:hover:before {
+            border: 2px solid  #669999;
+        }
+        label.radio:after {
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 5px;
+            width: 8px;
+            height: 4px;
+            border: 3px solid  #669999;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+            opacity: 0;
+        }
+        input[type=radio]:checked + label:after {
+            opacity: 1;
+        }
+        .flax {
+            display:flex;
+            justify-content:space-around;
+        }
+        .btn-block {
+            margin-top: 10px;
+            text-align: center;
+        }
+        button {
+            width: 150px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background:  #669999;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background:  #a3c2c2;
+        }
+        @media (min-width: 568px) {
+            .name-item, .city-item {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .name-item input, .name-item div {
+                width: calc(50% - 20px);
+            }
+            .name-item div input {
+                width:97%;}
+            .name-item div label {
+                display:block;
+                padding-bottom:5px;
+            }
+        }
+        tr:nth-child(even) {background-color: #f2f2f2;
+            color:#39adff;}
+        tr:nth-child(odd)  {background-color: #39add1;
+            color: white;
+        }
+        td
+        {
+            text-align: center;
+            padding: 5px;
+        }
+        table
+        {
+            width:100%;
+        }
+
+        .small_button{
+            color : #ffffff;
+            background: #39d182;
+            height : 35px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="testbox">
+    <form id = "formId">
+        <div class="banner">
+            <h1>New Student Registration</h1>
+        </div>
+        <br>
+        <div class="colums">
+            <div class="item">
+                <label for="first_name">First Name<span>*</span></label>
+                <input id="first_name" type="text" name="first_name" required/>
+            </div>
+            <div class="item">
+                <label for="middle_name">Middle Name<span>*</span></label>
+                <input id="middle_name" type="text" name="middle_name" required/>
+            </div>
+
+        </div>
+
+
+        <div class="colums">
+            <div class="item">
+                <label for="last_name">Last Name<span>*</span></label>
+                <input id="last_name" type="text" name="last_name" required/>
+            </div>
+            <div class="item">
+                <label for="email">Email<span>*</span></label>
+                <input id="email" type="text" name="email" required/>
+            </div>
+
+        </div>
+
+        <div class="colums">
+            <div class="item">
+                <label for="username">Username<span>*</span></label>
+                <input id="username" type="text" name="username" required/>
+            </div>
+            <div class="item">
+                <label for="password">Password<span>*</span></label>
+                <input id="password" type="text" name="password" required/>
+            </div>
+
+        </div>
+
+
+        <div class="colums">
+            <div class="item">
+                <label for="contact_number">Contact Number<span>*</span></label>
+                <input id="contact_number" type="text" name="contact_number" required/>
+            </div>
+
+            <div class="item">
+                <label for="address">Address<span>*</span></label>
+                <input id="address" type="text" name="address" required/>
+            </div>
+        </div>
+
+        <div class="colums">
+            <div class="item">
+                <label for="enrollment_number">Enrollment Number<span>*</span></label>
+                <input id="enrollment_number" type="text" name="enrollment_number" required/>
+            </div>
+        </div>
+
+        <div class="btn-block">
+            <button id = "submitButton" >Submit</button>
+        </div>
+
+    </form>
+</div>
+<script>
+    function addStudent() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4){
+                if(this.status == 200) {
+                    alert("Student Registered Successfully!");
+                }
+                else{
+                    alert("Error registering student!");
+                }
+            }
+        };
+
+
+        var first_name = document.getElementById("first_name").value;
+        var last_name = document.getElementById("last_name").value;
+        var middle_name= document.getElementById("middle_name").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var email = document.getElementById("email").value;
+        var contact_number = document.getElementById("contact_number").value;
+        var address = document.getElementById("address").value;
+        var enrollment_number = document.getElementById("enrollment_number").value;
+
+
+        var query = "first_name=" + first_name;
+        query = query + "&username="+username;
+        query = query + "&password="+password;
+        query = query + "&contact_number="+contact_number;
+        query = query + "&address="+address;
+        query = query + "&email="+email;
+        query = query + "&middle_name="+middle_name;
+        query = query + "&last_name="+last_name;
+        query = query + "&enrollment_number="+enrollment_number;
+
+        console.log("http://localhost:8000/REST_example_war/api/student/uploaddata?"+query);
+        xhttp.open("GET", "http://localhost:8000/REST_example_war/api/student/uploaddata?"+query, true);
+        xhttp.send();
+    }
+
+
+    var form = document.getElementById("formId");
+    function handleForm(event) { event.preventDefault(); }
+    form.addEventListener('submit', handleForm);
+
+
+    document.getElementById("submitButton").onclick = function (){
+        addStudent();
+    };
+
+</script>
+</body>
+</html>
