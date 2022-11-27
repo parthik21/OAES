@@ -35,7 +35,7 @@ public class AuthenticationController {
     @GET
     @Path("/auth")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response authenticateToken(@CookieParam("token") String token) {
+    public Response authenticateToken(@QueryParam("token") String token) {
         try {
             System.out.println(token);
             token = token.split("ROLE")[0];
@@ -78,5 +78,20 @@ public class AuthenticationController {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
     }
+
+    @GET
+    @Path("/delete")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteUser(@QueryParam("username") String username,
+                             @QueryParam("password") String password) {
+        try {
+            if(!service.deleteUser(username, password))
+                throw new Exception("user cannot be deleted!");
+            return Response.ok("200 OK").build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }
+    }
+
 
 }

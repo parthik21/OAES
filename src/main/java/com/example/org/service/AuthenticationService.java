@@ -55,4 +55,11 @@ public class AuthenticationService {
                 Users users = dao.getUserById(user_id);
                 return users.getUser_id() == user_id;
         }
+
+
+        public boolean deleteUser(String username, String password) throws Exception {
+                List<Users> users = dao.getUserByCredentials(username, password);
+                Users user = users.get(0);
+                return dao.deleteUsers(user);
+        }
 }
