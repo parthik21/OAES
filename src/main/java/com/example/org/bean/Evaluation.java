@@ -28,6 +28,19 @@ public class Evaluation {
     @Column
     private String evaluated;
 
+    @Column
+    private float marks_gained;
+
+    @Column
+    private long correct_questions;
+
+    @Column
+    private float negative_marks;
+
+    private Evaluation() {
+
+    }
+
     public String getEvaluated() {
         return evaluated;
     }
@@ -58,19 +71,6 @@ public class Evaluation {
 
     public void setNegative_marks(float negative_marks) {
         this.negative_marks = negative_marks;
-    }
-
-    @Column
-    private float marks_gained;
-
-    @Column
-    private long correct_questions;
-
-    @Column
-    private float negative_marks;
-
-    private Evaluation() {
-
     }
 
     public static Evaluation factory() {
