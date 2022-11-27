@@ -7,11 +7,16 @@ import com.example.org.util.DateUtil;
 
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TestService {
     TestDAO dao = new TestDAO();
     DateUtil dateUtil = new DateUtil();
+
+    public static final Logger logger = Logger.getLogger(TestService.class.toString());
     public boolean addTest(Test test) {
+        logger.log(Level.INFO, "addTest has invoked for test " + test.getTest_id());
         return dao.addTest(test);
     }
     public List<Test> getAllTests() {
@@ -21,7 +26,10 @@ public class TestService {
         return dao.getTestById(id);
     }
     public boolean updateTest(Test test){return dao.updateTest(test);}
-    public boolean deleteTest(Test test){return dao.deleteTest(test);}
+    public boolean deleteTest(Test test){
+        logger.log(Level.INFO, "deleteTest has invoked for test " + test.getTest_id());
+        return dao.deleteTest(test);
+    }
 
     public String uploadTest(int exam_id,
                              String answer_key,
@@ -29,6 +37,8 @@ public class TestService {
                              String name,
                              String date){
 
+
+        logger.log(Level.INFO, "uploadTest service accessed for exam " + exam_id);
         Test test = Test.factory();
         test.setNegative_marking(Float.parseFloat(negative_marking));
         test.setAnswerKey(answer_key);

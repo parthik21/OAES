@@ -4,10 +4,16 @@ import com.example.org.bean.Student;
 import com.example.org.dao.StudentDAO;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StudentService {
     StudentDAO dao = new StudentDAO();
+
+    public static final Logger logger = Logger.getLogger(StudentService.class.toString());
+
     public boolean addStudent(Student student) {
+        logger.log(Level.INFO, "addStudent invoked for student " + student.getStudent_id());
         return dao.addStudent(student);
     }
     public List<Student> getAllStudents() {
@@ -17,7 +23,10 @@ public class StudentService {
         return dao.getStudentById(id);
     }
     public boolean updateStudent(Student student){return dao.updateStudent(student);}
-    public boolean deleteStudent(Student student){return dao.deleteStudent(student);}
+    public boolean deleteStudent(Student student){
+        logger.log(Level.INFO, "deleteStudent accessed for student " + student.getStudent_id());
+        return dao.deleteStudent(student);
+    }
     public List<Student> getStudents(){
         return getAllStudents();
     }
@@ -33,6 +42,8 @@ public class StudentService {
                                   String password) {
 
         System.out.println("here!");
+
+        logger.log(Level.INFO, "uploadStudent has invoked for student username with " + username);
 
         StudentService service = new StudentService();
         Student student = Student.factory();
