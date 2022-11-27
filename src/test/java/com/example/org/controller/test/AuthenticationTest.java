@@ -109,7 +109,5 @@ public class AuthenticationTest {
         response = get_response_from(url);
         Assert.assertEquals(response, "200 OK");
 
-
-
     }
 }

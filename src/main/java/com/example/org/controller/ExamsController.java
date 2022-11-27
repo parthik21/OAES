@@ -40,6 +40,7 @@ public class ExamsController {
                              @QueryParam("exam_start_date") String exam_start_date,
                              @QueryParam("exam_end_date") String exam_end_date,
                                @QueryParam("token") String token ) {
+        System.out.print("passed " + token);
         if(!authUtil.authenticate(token)) {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
