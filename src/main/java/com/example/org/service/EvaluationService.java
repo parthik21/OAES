@@ -7,6 +7,7 @@ import com.example.org.dao.EvaluationDAO;
 import jdk.internal.net.http.common.Log;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EvaluationService {
@@ -18,6 +19,7 @@ public class EvaluationService {
     }
 
     public List<Evaluation> getEvaluations(int student_id, int exam_id) {
+        logger.log(Level.INFO, "Evaluation generated to student " + student_id + " for exam " + exam_id);
         return dao.getAllEvaluations(student_id, exam_id);
     }
 
@@ -33,6 +35,8 @@ public class EvaluationService {
     public String uploadEvaluation(int student_id,
                                      int test_id,
                                      String responses){
+
+        logger.log(Level.INFO, "Response of student " + student_id + " for test " + test_id + " upload");
 
         Evaluation evaluation = Evaluation.factory();
         evaluation.setResponses(responses);
@@ -63,6 +67,8 @@ public class EvaluationService {
 
 
     public void makeEvaluations() {
+
+        logger.log(Level.INFO, "Make evaluation service invoke");
         List<Evaluation> evaluations = dao.getPendingEvaluations();
         for(Evaluation evaluation : evaluations) {
             float penalty = evaluation.getTest().getNegative_marking();
