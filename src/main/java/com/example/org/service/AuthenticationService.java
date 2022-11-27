@@ -32,23 +32,30 @@ public class AuthenticationService {
         }
 
         public String issueToken(String username, String password) throws Exception {
+                logger.log(Level.INFO, "Token issued for user " + username);
                 List<Users> users = dao.getUserByCredentials(username, password);
                 Users user = users.get(0);
                 return tokenUtil.encrypt(user.getUser_id() + "");
         }
 
         public boolean signUp(String username, String password, String role) {
+
+                logger.log(Level.INFO, "Sign up requested");
                 Users users = Users.factory();
                 if((username.length() <= 8) || (password.length() < 8)) {
+                        logger.log(Level.SEVERE, "Sign up Failed");
                         return false;
                 }
                 users.setUsername(username);
                 users.setPassword(password);
                 users.setRole(role);
+
+                logger.log(Level.FINEST, "Signed up Successfully");
                 return dao.addUser(users);
         }
 
         public boolean authenticate(String Token) throws Exception {
+                logger.log(Level.INFO, "Authentication called using token " + Token);
                 System.out.print(tokenUtil.decrypt(Token));
                 int user_id = Integer.parseInt(tokenUtil.decrypt(Token));
                 System.out.print(user_id);
@@ -58,6 +65,7 @@ public class AuthenticationService {
 
 
         public boolean deleteUser(String username, String password) throws Exception {
+                logger.log(Level.INFO, "Delete user service accessed by user " + username);
                 List<Users> users = dao.getUserByCredentials(username, password);
                 Users user = users.get(0);
                 return dao.deleteUsers(user);

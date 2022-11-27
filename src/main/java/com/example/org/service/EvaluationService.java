@@ -4,11 +4,14 @@ import com.example.org.bean.Evaluation;
 import com.example.org.bean.Student;
 import com.example.org.bean.Test;
 import com.example.org.dao.EvaluationDAO;
+import jdk.internal.net.http.common.Log;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class EvaluationService {
 
+    public static final Logger logger = Logger.getLogger(EvaluationService.class.toString());
     private final EvaluationDAO dao = new EvaluationDAO();
     public boolean addExam(Evaluation exam) {
         return dao.addEvaluation(exam);
