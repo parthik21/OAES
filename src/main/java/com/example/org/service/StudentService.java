@@ -1,6 +1,7 @@
 package com.example.org.service;
 
 import com.example.org.bean.Student;
+import com.example.org.bean.Users;
 import com.example.org.dao.StudentDAO;
 
 import java.util.List;
@@ -46,8 +47,14 @@ public class StudentService {
         logger.log(Level.INFO, "uploadStudent has invoked for student username with " + username);
 
         StudentService service = new StudentService();
-        Student student = Student.factory();
+        if((username.length() < 8) || (password.length() < 8)) {
+            return new String("Error Creating student!");
+        }
 
+        AuthenticationService service1 = new AuthenticationService();
+        service1.signUp(username, password, "student");
+
+        Student student = Student.factory();
         student.setFirst_name(first_name);
         student.setLast_name(last_name);
         student.setAddress(address);
@@ -68,6 +75,12 @@ public class StudentService {
 
     public String deleteStudent(int id){
         Student student = getStudentById(id);
+        AuthenticationService service = new AuthenticationService();
+        try {
+            service.deleteUser(student.getUsername(), student.getPassword());
+        } catch (Exception e) {
+            return new String("Student could not be deleted!");
+        }
         boolean result = deleteStudent(student);
         String n = new String("Student Deleted Successfully!");
         if(!result)

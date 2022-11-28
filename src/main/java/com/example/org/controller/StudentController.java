@@ -53,6 +53,7 @@ public class StudentController  {
                                   @QueryParam("token") String token) {
 
         if(!authService.authenticate(token)) {
+            System.out.print("forbidde");
             return Response.status(Response.Status.FORBIDDEN).build();
         }
         String n = service.uploadStudent(first_name, middle_name, last_name, email,
