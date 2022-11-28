@@ -13,12 +13,12 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 
 public class EvaluationControllerTest {
+    private final String username = "mock_username";
+    private final String password = "mock_password";
     private String exam_id;
     private String test_id;
     private String responses;
     private String student_id;
-    private final String username = "mock_username";
-    private final String password = "mock_password";
     private String token;
 
     private void createMockUser() throws Exception{

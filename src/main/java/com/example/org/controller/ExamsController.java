@@ -10,8 +10,6 @@ import javax.ws.rs.core.Response;
 @Path("exam")
 public class ExamsController {
     private final ExamService service = new ExamService();
-    private authUtil authUtil = new authUtil();
-
     @GET
     @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
@@ -22,6 +20,8 @@ public class ExamsController {
         }
         return service.getExams();
     }
+
+    private authUtil authUtil = new authUtil();
 
     @GET
     @Path("/get_by_id")
