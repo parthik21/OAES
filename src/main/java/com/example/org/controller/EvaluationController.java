@@ -17,6 +17,16 @@ public class EvaluationController {
 
     private final EvaluationService service = new EvaluationService();
     private final authUtil authUtil = new authUtil();
+    @GET
+    @Path("/evaluate")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response makeEvaluations(@QueryParam("token") String token) {
+        /*if(!authUtil.authenticate(token)) {
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }*/
+        service.makeEvaluations();
+        return Response.ok().entity("Made evaluations").build();
+    }
 
     @GET
     @Path("/uploaddata")
@@ -37,22 +47,11 @@ public class EvaluationController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getEvaluations(@QueryParam("student_id") int student_id,
                                    @QueryParam("exam_id") int exam_id,
-                                   @QueryParam("token") String token){
-        if(!authUtil.authenticate(token)) {
+                                   @QueryParam("token") String token) {
+        if (!authUtil.authenticate(token)) {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
         List<Evaluation> evaluations = service.getEvaluations(student_id, exam_id);
         return Response.ok().entity(evaluations).build();
-    }
-
-    @GET
-    @Path("/evaluate")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response makeEvaluations(@QueryParam("token") String token) {
-        /*if(!authUtil.authenticate(token)) {
-            return Response.status(Response.Status.FORBIDDEN).build();
-        }*/
-        service.makeEvaluations();
-        return Response.ok().entity("Made evaluations").build();
     }
 }

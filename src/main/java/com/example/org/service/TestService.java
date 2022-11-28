@@ -26,6 +26,7 @@ public class TestService {
         return dao.getTestById(id);
     }
     public boolean updateTest(Test test){return dao.updateTest(test);}
+
     public boolean deleteTest(Test test){
         logger.log(Level.INFO, "deleteTest has invoked for test " + test.getTest_id());
         return dao.deleteTest(test);
